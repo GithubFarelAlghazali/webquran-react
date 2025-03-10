@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { AddToBookmark, CopyIcon } from "../assets/icons";
 import { setTerakhirDibaca } from "../services/quran.service";
 
@@ -23,7 +22,7 @@ export const ListSurah = (props) => {
 };
 
 export const ListAyat = (props) => {
-     const { id, nomor, ar, idn, nama } = props;
+     const { id, nomor, ar, idn, nama, nomorSurah } = props;
      const copy = `Allah Subhanahu wa ta'ala berfirman:
      ${ar}
      Artinya: ${idn}
@@ -32,11 +31,15 @@ export const ListAyat = (props) => {
           navigator.clipboard.writeText(copy);
      };
 
+     const handleBookmark = () => {
+          setTerakhirDibaca(id, nomorSurah);
+     };
+
      return (
           <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex scroll-m-64" id={id}>
                <div className="w-[10%] text-center items-center flex flex-col justify-start gap-3">
                     <h3>{nomor}</h3>
-                    <button onClick={setTerakhirDibaca(id, nomor)}>
+                    <button onClick={handleBookmark}>
                          <AddToBookmark style="fill-current text-teal-800 w-5 h-5"></AddToBookmark>
                     </button>
                     <button onClick={copyAyat} popoverTarget="popupAyat">

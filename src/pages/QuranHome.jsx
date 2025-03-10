@@ -5,11 +5,12 @@ import { ListSurah } from "../components/quranComponents";
 export const QuranHome = () => {
      const [surahs, setSurah] = useState([]);
      const [surahDicari, setSurahDicari] = useState([]);
-
+     const [terakhirDibaca, setTerakhirDibaca] = useState();
      useEffect(() => {
           getSurahList((data) => {
                setSurah(data);
                setSurahDicari(data);
+               setTerakhirDibaca(localStorage.getItem("terakhirDibaca"));
           });
      }, []);
      const cariSurah = (event) => {
@@ -25,6 +26,7 @@ export const QuranHome = () => {
                setSurahDicari(surahs); // Jika input kosong, tampilkan semua surah
           }
      };
+
      return (
           <div className="w-full md:w-[50vw] mx-auto text-slate-800 font-lato">
                <header className="mb-5 w-full">
@@ -33,6 +35,9 @@ export const QuranHome = () => {
                          <input type="text" placeholder="Cari Surah" id="cari_surah" className="border-b border-b-slate-400 border w-full p-2" autoComplete="false" onChange={cariSurah} />
                     </div>
                </header>
+               <section>
+                    <a href={"/quran/" + terakhirDibaca}>Terakhir dibaca</a>
+               </section>
                <ul className="text-teal-900 w-fll h-[70vh] overflow-scroll">
                     {surahDicari.map((surah) => {
                          return (

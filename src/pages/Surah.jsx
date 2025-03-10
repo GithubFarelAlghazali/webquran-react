@@ -40,38 +40,39 @@ export const Surah = () => {
 
      return (
           <div className="w-full mx-auto text-slate-800  relative font-lato">
-               <header className="left-0 right-0 mb-5 w-full bg-white shadow-md border p-2 rounded-md sticky top-0">
+               <header className=" w-full bg-white shadow-md border p-2 rounded-md sticky  top-3 h-28">
                     <a href="/" className="absolute  left-2 p-2 rounded-sm">
-                         <HomeIcon style="fill-current text-teal-800 w-9 h-9"></HomeIcon>
+                         <HomeIcon style="fill-current text-teal-800 md:w-9 md:h-9 w-5 h-5"></HomeIcon>
                     </a>
-                    <div className="flex justify-between w-[80%] mx-auto ">
-                         <h4 className="capitalize text-left">
-                              Surah ke-{surah.nomor} <br />
-                              {surah.arti}
-                         </h4>
-                         <h1 className="text-4xl font-bold mb-5 font-amiri">{surah.nama}</h1>
-                         <h4 className="capitalize text-right">
-                              {surah.tempat_turun} <br />
-                              {surah.jumlah_ayat} Ayat
-                         </h4>
-                    </div>
-                    <div className="flex justify-between items-center text-2xl">
+                    <h1 className="md:text-4xl text-2xl font-bold md:mb-5 mb-3 font-amiri">{surah.nama}</h1>
+                    <div className="flex justify-between items-center text-2xl mb-2 md:mb-0">
                          {selanjutnya ? (
                               <a href={"/quran/" + selanjutnya.nomor}>
-                                   <ArrowBack style="fill-current text-teal-900" />
+                                   <ArrowBack style="fill-current text-teal-900 w-3 h-3 md:w-7 md:h-7" />
                               </a>
                          ) : (
                               " "
                          )}
                          {sebelumnya ? (
                               <a href={"/quran/" + sebelumnya.nomor}>
-                                   <ArrowForward style="fill-current text-teal-900" />
+                                   <ArrowForward style="fill-current text-teal-900 w-3 h-3 md:w-7 md:h-7" />
                               </a>
                          ) : (
                               " "
                          )}
                     </div>
+                    <hr className="border-b-teal-700 border-b md:hidden" />
 
+                    <div className="flex justify-between w-full md:w-[80%] mx-auto text-xs md:text-base md:-translate-y-20">
+                         <h4 className="capitalize text-left">
+                              Surah ke-{surah.nomor} <br />
+                              {surah.arti}
+                         </h4>
+                         <h4 className="capitalize text-right">
+                              {surah.tempat_turun} <br />
+                              {surah.jumlah_ayat} Ayat
+                         </h4>
+                    </div>
                     <div popover="" id="popup" className="bg-white p-5 rounded-md shadow-md fixed  md:left-80 md:right-80 none">
                          {surah.nama_latin} ayat:
                          <br />
@@ -82,13 +83,13 @@ export const Surah = () => {
                          </a>
                     </div>
                     <button popoverTarget="popup" className="p-2 rounded-sm absolute top-2 right-2">
-                         <FindAyatIcon style="fill-current text-teal-700 w-9 h-9"></FindAyatIcon>
+                         <FindAyatIcon style="fill-current text-teal-700 w-5 h-5 md:w-9 md:h-9"></FindAyatIcon>
                     </button>
                </header>
                <ul className="text-teal-900 w-full md:w-[50vw] mx-auto">
                     {bismilah ? <Basmalah></Basmalah> : ""}
                     {ayat.map((ayatt) => {
-                         return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn}></ListAyat>;
+                         return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn}></ListAyat>;
                     })}
                </ul>
           </div>

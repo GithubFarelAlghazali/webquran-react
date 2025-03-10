@@ -20,9 +20,6 @@ export const getSurahAyat = (id, callback) => {
 };
 
 export const setTerakhirDibaca = (id, nomor) => {
-     localStorage.removeItem("terakhirDibaca");
-     localStorage.setItem("terakhirDibaca", "/quran/" + nomor + "#" + id);
-};
-export const getTerakhirDibaca = () => {
-     localStorage.getItem("terakhirDibaca");
+     const dibaca = `${nomor}#${id}`;
+     localStorage.setItem("terakhirDibaca", dibaca);
 };
