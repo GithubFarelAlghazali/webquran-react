@@ -36,7 +36,7 @@ export const QuranHome = () => {
                     </div>
                </header>
                <section>
-                    <a href={"/quran/" + terakhirDibaca}>Terakhir dibaca</a>
+                    <a href={"quran/" + terakhirDibaca}>Terakhir dibaca</a>
                </section>
                <ul className="text-teal-900 w-fll h-[70vh] overflow-scroll">
                     {surahDicari.map((surah) => {
