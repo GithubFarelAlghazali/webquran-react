@@ -39,12 +39,22 @@ export const Surah = () => {
      };
 
      return (
-          <div className="w-full md:w-[50vw] mx-auto text-slate-800  relative font-lato">
-               <header className="mb-5 w-full bg-white shadow-md border p-2 rounded-md sticky top-0">
+          <div className="w-full mx-auto text-slate-800  relative font-lato">
+               <header className="left-0 right-0 mb-5 w-full bg-white shadow-md border p-2 rounded-md sticky top-0">
                     <a href="/" className="absolute  left-2 p-2 rounded-sm">
                          <HomeIcon style="fill-current text-teal-800 w-9 h-9"></HomeIcon>
                     </a>
-                    <h1 className="text-4xl font-bold mb-5 font-amiri">{surah.nama}</h1>
+                    <div className="flex justify-between w-[80%] mx-auto ">
+                         <h4 className="capitalize text-left">
+                              Surah ke-{surah.nomor} <br />
+                              {surah.arti}
+                         </h4>
+                         <h1 className="text-4xl font-bold mb-5 font-amiri">{surah.nama}</h1>
+                         <h4 className="capitalize text-right">
+                              {surah.tempat_turun} <br />
+                              {surah.jumlah_ayat} Ayat
+                         </h4>
+                    </div>
                     <div className="flex justify-between items-center text-2xl">
                          {selanjutnya ? (
                               <a href={"/quran/" + selanjutnya.nomor}>
@@ -61,18 +71,7 @@ export const Surah = () => {
                               " "
                          )}
                     </div>
-                    <hr className="border-b-teal-700 border-b" />
 
-                    <div className="flex justify-between w-full ">
-                         <h4 className="capitalize text-left">
-                              Surah ke-{surah.nomor} <br />
-                              {surah.arti}
-                         </h4>
-                         <h4 className="capitalize text-right">
-                              {surah.tempat_turun} <br />
-                              {surah.jumlah_ayat} Ayat
-                         </h4>
-                    </div>
                     <div popover="" id="popup" className="bg-white p-5 rounded-md shadow-md fixed  md:left-80 md:right-80 none">
                          {surah.nama_latin} ayat:
                          <br />
@@ -86,7 +85,7 @@ export const Surah = () => {
                          <FindAyatIcon style="fill-current text-teal-700 w-9 h-9"></FindAyatIcon>
                     </button>
                </header>
-               <ul className="text-teal-900 w-full ">
+               <ul className="text-teal-900 w-full md:w-[50vw] mx-auto">
                     {bismilah ? <Basmalah></Basmalah> : ""}
                     {ayat.map((ayatt) => {
                          return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn}></ListAyat>;
