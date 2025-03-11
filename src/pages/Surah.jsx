@@ -10,7 +10,7 @@ export const Surah = () => {
      const [ayat, setAyat] = useState([]);
      const [idAyatTujuan, setIdAyatTujuan] = useState();
      const [bismilah, setBismilah] = useState(true);
-     const [ayatTerakhirDibaca, setAyatTerakhirDibaca] = useState();
+     const [theme, setTheme] = useState("light");
      const location = useLocation();
 
      // Scroll to the section when ayat is loaded
@@ -53,30 +53,41 @@ export const Surah = () => {
           setIdAyatTujuan(foundId);
      };
 
+     useEffect(() => {
+          localStorage.getItem("theme") ? setTheme(localStorage.getItem("theme")) : localStorage.setItem("theme", theme);
+
+          const html = document.querySelector("html");
+          if (theme === "dark") {
+               html.classList.add("dark");
+          } else {
+               html.classList.remove("dark");
+          }
+     });
+
      return (
-          <div className="w-full mx-auto text-slate-800  relative font-lato">
-               <header className=" w-full bg-white shadow-md border p-2 rounded-md sticky  top-3 h-28">
-                    <a href="/" className="absolute  left-2 p-2 rounded-sm">
-                         <HomeIcon style="fill-current text-teal-800 md:w-9 md:h-9 w-5 h-5"></HomeIcon>
+          <div className="w-full mx-auto dark:text-white text-slate-800  relative font-lato">
+               <header className="bg-white dark:bg-black shadow-md  border dark:border-none p-2 px-3 rounded-md fixed top-0 left-0 right-0 h-28">
+                    <a href="/" className="absolute  left-3 p-2 rounded-sm">
+                         <HomeIcon style="fill-current text-teal-800 dark:text-white md:w-10 md:h-10 w-7 h-7"></HomeIcon>
                     </a>
-                    <h1 className="md:text-4xl text-2xl font-bold md:mb-5 mb-3 font-amiri">{surah.nama}</h1>
-                    <div className="flex justify-between items-center text-2xl mb-2 md:mb-0">
+                    <h1 className="md:text-5xl text-2xl font-bold md:mb-5 mb-3 font-amiri">{surah.nama}</h1>
+                    <div className="flex justify-between items-center text-2xl mb-2 md:mb-0 w-full text-teal-900 dark:text-white">
                          {selanjutnya ? (
                               <a href={"/quran/" + selanjutnya.nomor}>
-                                   <ArrowBack style="fill-current text-teal-900 w-3 h-3 md:w-7 md:h-7" />
+                                   <ArrowBack style="fill-current  w-3 h-3 md:w-7 md:h-7" />
                               </a>
                          ) : (
                               " "
                          )}
                          {sebelumnya ? (
                               <a href={"/quran/" + sebelumnya.nomor}>
-                                   <ArrowForward style="fill-current text-teal-900 w-3 h-3 md:w-7 md:h-7" />
+                                   <ArrowForward style="fill-current  w-3 h-3 md:w-7 md:h-7" />
                               </a>
                          ) : (
                               " "
                          )}
                     </div>
-                    <hr className="border-b-teal-700 border-b md:hidden" />
+                    <hr className="dark:border-b-white border-b-teal-700 border-b md:hidden" />
 
                     <div className="flex justify-between w-full md:w-[80%] mx-auto text-xs md:text-base md:-translate-y-20">
                          <h4 className="capitalize text-left">
@@ -88,7 +99,7 @@ export const Surah = () => {
                               {surah.jumlah_ayat} Ayat
                          </h4>
                     </div>
-                    <div popover="" id="popup" className="bg-white p-5 rounded-md shadow-md fixed  md:left-80 md:right-80 none">
+                    <div popover="" id="popup" className="border border-slate-300 bg-white p-5 rounded-md shadow-md fixed  md:left-80 md:right-80 none">
                          {surah.nama_latin} ayat:
                          <br />
                          <input type="number" max={ayat.length} className="my-2 border-b border-b-slate-700 focus:outline-none" placeholder={"1-" + ayat.length} onChange={cariAyat} id="cari" />
@@ -97,17 +108,15 @@ export const Surah = () => {
                               Cari
                          </a>
                     </div>
-                    <button popoverTarget="popup" className="p-2 rounded-sm absolute top-2 right-2">
-                         <FindAyatIcon style="fill-current text-teal-700 w-5 h-5 md:w-9 md:h-9"></FindAyatIcon>
+                    <button popoverTarget="popup" className="p-2 rounded-sm absolute top-2 right-3">
+                         <FindAyatIcon style="fill-current text-teal-800 dark:text-white md:w-10 md:h-10 w-7 h-7"></FindAyatIcon>
                     </button>
                     <button></button>
                </header>
-               <ul className="text-teal-900 w-full md:w-[50vw] mx-auto">
+               <ul className="text-teal-900 dark:text-white w-full md:w-[50vw] mx-auto mt-20">
                     {bismilah ? <Basmalah></Basmalah> : ""}
                     {ayat.map((ayatt) => {
-                         return (
-                              <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn} ayatTerakhirDibaca={ayatTerakhirDibaca} setAyatTerakhirDibaca={setAyatTerakhirDibaca}></ListAyat>
-                         );
+                         return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn}></ListAyat>;
                     })}
                </ul>
           </div>
