@@ -1,8 +1,8 @@
+import "./App.css";
 import markLogo from "./assets/bookmark-square-svgrepo-com (1).svg";
 import clockLogo from "./assets/clock-square-svgrepo-com.svg";
 import quranLogo from "./assets/quran-svgrepo-com.svg";
 import quranilustration from "./assets/malik-shibly-lKbz2ejxYbA-unsplash.jpg";
-import "./App.css";
 
 function App() {
      return (

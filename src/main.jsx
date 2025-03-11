@@ -1,28 +1,63 @@
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import "./index.css";
-import App from "./App.jsx";
 import { QuranHome } from "./pages/QuranHome.jsx";
 import { Jadwal } from "./pages/Jadwal.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Surah } from "./pages/Surah.jsx";
+import "./App.css";
 
+// Component to handle hash scrolling
+const ScrollToSection = () => {
+     const location = useLocation();
+
+     useEffect(() => {
+          if (location.hash) {
+               const id = location.hash.substring(1); // Remove #
+               const element = document.getElementById(id);
+               if (element) {
+                    setTimeout(() => {
+                         element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }, 100); // Delay to ensure the element is rendered
+               }
+          }
+     }, [location]);
+
+     return null;
+};
+
+// Define routes
 const router = createBrowserRouter([
      {
           path: "/",
-          element: <QuranHome />,
+          element: (
+               <>
+                    <ScrollToSection />
+                    <QuranHome />
+               </>
+          ),
      },
-
      {
           path: "/quran/:id",
-          element: <Surah />,
+          element: (
+               <>
+                    <ScrollToSection />
+                    <Surah />
+               </>
+          ),
      },
      {
           path: "/jadwal",
-          element: <Jadwal />,
+          element: (
+               <>
+                    <ScrollToSection />
+                    <Jadwal />
+               </>
+          ),
      },
 ]);
 
+// Render application
 createRoot(document.getElementById("root")).render(
      <StrictMode>
           <RouterProvider router={router} />

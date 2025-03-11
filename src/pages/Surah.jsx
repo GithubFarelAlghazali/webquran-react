@@ -1,6 +1,6 @@
 import { getSurahAyat } from "../services/quran.service";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { ListAyat, Basmalah } from "../components/quranComponents";
 import { ArrowBack, ArrowForward, HomeIcon, FindAyatIcon } from "../assets/icons";
 
@@ -10,7 +10,20 @@ export const Surah = () => {
      const [ayat, setAyat] = useState([]);
      const [idAyatTujuan, setIdAyatTujuan] = useState();
      const [bismilah, setBismilah] = useState(true);
+     const location = useLocation();
 
+     // Scroll to the section when ayat is loaded
+     useEffect(() => {
+          if (ayat.length > 0 && location.hash) {
+               const elementId = location.hash.replace("#", "");
+               const element = document.getElementById(elementId);
+               if (element) {
+                    setTimeout(() => {
+                         element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }, 100); // Small delay ensures the element is rendered before scrolling
+               }
+          }
+     }, [ayat, location]);
      useEffect(() => {
           getSurahAyat(id, (data) => {
                setSurah(data);
@@ -85,6 +98,7 @@ export const Surah = () => {
                     <button popoverTarget="popup" className="p-2 rounded-sm absolute top-2 right-2">
                          <FindAyatIcon style="fill-current text-teal-700 w-5 h-5 md:w-9 md:h-9"></FindAyatIcon>
                     </button>
+                    <button></button>
                </header>
                <ul className="text-teal-900 w-full md:w-[50vw] mx-auto">
                     {bismilah ? <Basmalah></Basmalah> : ""}

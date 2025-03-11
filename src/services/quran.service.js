@@ -19,7 +19,11 @@ export const getSurahAyat = (id, callback) => {
           });
 };
 
-export const setTerakhirDibaca = (id, nomor) => {
-     const dibaca = `${nomor}#${id}`;
+export const setTerakhirDibaca = (id, nomorSurah, surah, ayat) => {
+     const dibaca = `${nomorSurah}#${id}`;
+     const suratTerakhir = surah;
+     const ayatTerakhir = ayat;
      localStorage.setItem("terakhirDibaca", dibaca);
+     localStorage.setItem("suratTerakhir", suratTerakhir);
+     localStorage.setItem("ayatTerakhir", ayatTerakhir);
 };

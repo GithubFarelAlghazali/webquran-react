@@ -32,11 +32,11 @@ export const ListAyat = (props) => {
      };
 
      const handleBookmark = () => {
-          setTerakhirDibaca(id, nomorSurah);
+          setTerakhirDibaca(id, nomorSurah, nama, nomor);
      };
 
      return (
-          <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex scroll-m-64" id={id}>
+          <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex scroll-m-28" id={id}>
                <div className="w-[10%] text-center items-center flex flex-col justify-start gap-3">
                     <h3>{nomor}</h3>
                     <button onClick={handleBookmark}>
