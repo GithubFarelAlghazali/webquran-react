@@ -1,5 +1,6 @@
-import { AddToBookmark, CopyIcon } from "../assets/icons";
-import { setTerakhirDibaca } from "../services/quran.service";
+import { useEffect, useState } from "react";
+import { AddToBookmark, CopyIcon, Bookmark } from "../assets/icons";
+import { getSurahAyat, setTerakhirDibaca } from "../services/quran.service";
 
 export const ListSurah = (props) => {
      const { nomor, children, nama, namaLatin, jumlah_ayat, tempatTurun } = props;
@@ -22,7 +23,8 @@ export const ListSurah = (props) => {
 };
 
 export const ListAyat = (props) => {
-     const { id, nomor, ar, idn, nama, nomorSurah } = props;
+     const { id, nomor, ar, idn, nama, nomorSurah, ayatTerakhirDibaca, setAyatTerakhirDibaca } = props;
+
      const copy = `Allah Subhanahu wa ta'ala berfirman:
      ${ar}
      Artinya: ${idn}
@@ -31,19 +33,26 @@ export const ListAyat = (props) => {
           navigator.clipboard.writeText(copy);
      };
 
+     useEffect(() => {
+          const savedAyat = localStorage.getItem("terakhirDibaca")?.split("#")[1];
+          if (savedAyat) {
+               setAyatTerakhirDibaca(savedAyat);
+          }
+     }, []);
+
      const handleBookmark = () => {
           setTerakhirDibaca(id, nomorSurah, nama, nomor);
+          setAyatTerakhirDibaca(id);
      };
+     console.log(ayatTerakhirDibaca === id);
 
      return (
           <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex scroll-m-28" id={id}>
                <div className="w-[10%] text-center items-center flex flex-col justify-start gap-3">
                     <h3>{nomor}</h3>
-                    <button onClick={handleBookmark}>
-                         <AddToBookmark style="fill-current text-teal-800 w-5 h-5"></AddToBookmark>
-                    </button>
+                    <button onClick={handleBookmark}>{ayatTerakhirDibaca === id ? <Bookmark style="fill-current text-teal-800"></Bookmark> : <AddToBookmark style="fill-current text-teal-800"></AddToBookmark>}</button>
                     <button onClick={copyAyat} popoverTarget="popupAyat">
-                         <CopyIcon style="fill-current text-teal-800 w-5 h-5"></CopyIcon>
+                         <CopyIcon style="fill-current text-teal-800"></CopyIcon>
                     </button>
                     <div popover="" id="popupAyat" className="bg-white p-5 rounded-md shadow-md border fixed  md:left-80 md:right-80 none">
                          Ayat berhasil disalin!

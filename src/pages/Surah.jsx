@@ -10,6 +10,7 @@ export const Surah = () => {
      const [ayat, setAyat] = useState([]);
      const [idAyatTujuan, setIdAyatTujuan] = useState();
      const [bismilah, setBismilah] = useState(true);
+     const [ayatTerakhirDibaca, setAyatTerakhirDibaca] = useState();
      const location = useLocation();
 
      // Scroll to the section when ayat is loaded
@@ -24,6 +25,7 @@ export const Surah = () => {
                }
           }
      }, [ayat, location]);
+
      useEffect(() => {
           getSurahAyat(id, (data) => {
                setSurah(data);
@@ -103,7 +105,9 @@ export const Surah = () => {
                <ul className="text-teal-900 w-full md:w-[50vw] mx-auto">
                     {bismilah ? <Basmalah></Basmalah> : ""}
                     {ayat.map((ayatt) => {
-                         return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn}></ListAyat>;
+                         return (
+                              <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn} ayatTerakhirDibaca={ayatTerakhirDibaca} setAyatTerakhirDibaca={setAyatTerakhirDibaca}></ListAyat>
+                         );
                     })}
                </ul>
           </div>
