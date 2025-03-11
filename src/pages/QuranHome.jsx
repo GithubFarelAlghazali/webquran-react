@@ -10,7 +10,38 @@ export const QuranHome = () => {
      const [terakhirDibaca, setTerakhirDibaca] = useState("");
      const [surahTerakhir, setSurahTerakhir] = useState("");
      const [ayatTerakhir, setAyatTerakhir] = useState("");
-     const [theme, setTheme] = useState("light");
+     const [theme, setTheme] = useState(() => {
+          if (typeof window !== "undefined") {
+               return localStorage.getItem("theme") || "light"; // Ambil dari localStorage
+          }
+          return "light"; // Default jika belum ada
+     });
+
+     // Terapkan tema saat komponen pertama kali dimuat
+     useEffect(() => {
+          if (typeof window !== "undefined") {
+               document.documentElement.classList.toggle("dark", theme === "dark");
+          }
+     }, [theme]);
+
+     useEffect(() => {
+          getSurahList((data) => {
+               setSurah(data);
+               setSurahDicari(data);
+               if (localStorage.getItem("terakhirDibaca")) {
+                    setTerakhirDibaca(localStorage.getItem("terakhirDibaca"));
+                    setAyatTerakhir(localStorage.getItem("ayatTerakhir"));
+                    setSurahTerakhir(localStorage.getItem("suratTerakhir"));
+               }
+          });
+     }, []);
+
+     const changeTheme = () => {
+          const newTheme = theme === "dark" ? "light" : "dark";
+          setTheme(newTheme);
+          localStorage.setItem("theme", newTheme);
+          document.documentElement.classList.toggle("dark", newTheme === "dark");
+     };
 
      useEffect(() => {
           getSurahList((data) => {
@@ -28,18 +59,24 @@ export const QuranHome = () => {
           });
      }, []);
 
-     useEffect(() => {
-          localStorage.getItem("theme") ? setTheme(localStorage.getItem("theme")) : localStorage.setItem("theme", theme);
+     // useEffect(() => {
+     //      localStorage.getItem("theme") ? setTheme(localStorage.getItem("theme")) : localStorage.setItem("theme", theme);
 
-          const html = document.querySelector("html");
-          if (theme === "dark") {
-               html.classList.add("dark");
-               document.body.style.background = "black";
-          } else {
-               html.classList.remove("dark");
-               document.body.style.background = "white";
-          }
-     });
+     //      const html = document.querySelector("html");
+     //      if (theme === "dark") {
+     //           html.classList.add("dark");
+     //           document.body.style.background = "black";
+     //      } else {
+     //           html.classList.remove("dark");
+     //           document.body.style.background = "white";
+     //      }
+     // });
+
+     // const changeTheme = () => {
+     //      const newTheme = theme === "dark" ? "light" : "dark";
+     //      localStorage.setItem("theme", newTheme);
+     //      setTheme(newTheme);
+     // };
 
      const cariSurah = (event) => {
           const input = event.target.value.toLowerCase(); // Ubah input ke lowercase
@@ -53,12 +90,6 @@ export const QuranHome = () => {
           } else {
                setSurahDicari(surahs); // Jika input kosong, tampilkan semua surah
           }
-     };
-
-     const changeTheme = () => {
-          const newTheme = theme === "dark" ? "light" : "dark";
-          localStorage.setItem("theme", newTheme);
-          setTheme(newTheme);
      };
 
      return (
