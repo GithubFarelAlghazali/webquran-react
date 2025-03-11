@@ -46,9 +46,14 @@ export const QuranHome = () => {
                          <input type="text" placeholder="Cari Surah" id="cari_surah" className="border-b border-b-slate-400 border w-full p-2" autoComplete="false" onChange={cariSurah} />
                     </div>
                </header>
-               <section className="bg-teal-100 shadow-md rounded-sm p-2 w-full mb-3">
-                    {localStorage.getItem("terakhirDibaca") ? <Link to={"quran/" + terakhirDibaca}>{`atau, lanjutkan membaca ${surahTerakhir} ayat ${ayatTerakhir}`}</Link> : ""}
-               </section>
+
+               {localStorage.getItem("terakhirDibaca") ? (
+                    <section className="bg-teal-100 shadow-md rounded-sm p-2 w-full mb-3">
+                         <Link to={"quran/" + terakhirDibaca}>{`atau, lanjutkan membaca ${surahTerakhir} ayat ${ayatTerakhir}`}</Link>
+                    </section>
+               ) : (
+                    ""
+               )}
                <ul className="text-teal-900 w-fll h-[60vh] overflow-scroll">
                     {surahDicari.map((surah) => {
                          return (
