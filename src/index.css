@@ -18,3 +18,7 @@ html.dark body {
 body {
      transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+html{
+@apply text-teal-900;
+}
