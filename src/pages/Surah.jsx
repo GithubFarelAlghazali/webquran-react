@@ -92,7 +92,7 @@ export const Surah = () => {
                     </div>
                     <hr className="dark:border-b-white border-b-teal-700 border-b md:hidden" />
 
-                    <div className="flex justify-between w-full md:w-[80%] mx-auto text-xs md:text-base md:-translate-y-20">
+                    <div className="flex justify-between w-full md:w-[80%] mx-auto text-sm md:text-base md:-translate-y-20">
                          <h4 className="capitalize text-left">
                               Surah ke-{surah.nomor} <br />
                               {surah.arti}

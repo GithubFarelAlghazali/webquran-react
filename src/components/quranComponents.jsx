@@ -15,7 +15,7 @@ export const ListSurah = (props) => {
                               <span className="capitalize">{tempatTurun}</span> | {jumlah_ayat} Ayat
                          </span>
                     </h2>
-                    <h3 className="text-3xl items-center font-amiri">{nama}</h3>
+                    <h3 className="text-3xl items-center font-uthmani">{nama}</h3>
                </a>
           </li>
      );
@@ -45,7 +45,7 @@ export const ListAyat = (props) => {
                     </button>
                </div>
                <div className="w-full ">
-                    <h2 className="font-semibold text-2xl md:text-3xl font-amiri text-right mb-7 leading-[2em] md:leading-[2em]">{ar}</h2>
+                    <h2 className="font-semibold text-2xl md:text-3xl font-uthmani text-right mb-7 leading-[2em] md:leading-[2em]">{ar}</h2>
 
                     <h3 className="text-left">
                          <b>Artinya: </b>
@@ -59,7 +59,7 @@ export const Basmalah = () => {
      return (
           <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex scroll-m-64 text-center">
                <div className="w-full ">
-                    <h2 className="font-semibold text-2xl md:text-3xl font-amiri  mb-7 leading-[2em] md:leading-[2em]">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
+                    <h2 className="font-semibold text-2xl md:text-3xl font-uthmani  mb-7 leading-[2em] md:leading-[2em]">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
 
                     <h3>
                          <i>Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.</i>
