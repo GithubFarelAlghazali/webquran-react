@@ -107,7 +107,7 @@ export const QuranHome = () => {
                </header>
 
                {localStorage.getItem("terakhirDibaca") ? (
-                    <section className="bg-teal-100  dark:bg-black dark:border dark:border-slate-400 shadow-md rounded-sm p-2 w-full mb-3">
+                    <section id="terakhirBaca" className=" shadow-md rounded-sm p-2 w-full mb-3">
                          <Link to={"quran/" + terakhirDibaca}>{`atau, lanjutkan membaca ${surahTerakhir} ayat ${ayatTerakhir}`}</Link>
                     </section>
                ) : (

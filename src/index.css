@@ -34,8 +34,13 @@ html.dark body {
 html.dark body ul {
      @apply bg-slate-950 text-white;
 }
+
 html.dark body input {
      @apply text-slate-950;
+}
+
+html body #terakhirBaca {
+     @apply bg-teal-900 text-white rounded-sm  dark:bg-black dark:border dark:border-slate-400;
 }
 
 body {
