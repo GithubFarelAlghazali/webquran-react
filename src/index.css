@@ -18,9 +18,6 @@ html body ul {
 html body header {
      @apply bg-white;
 }
-html body header #navigation {
-     @apply text-teal-800;
-}
 
 html.dark body header {
      @apply bg-slate-950;
@@ -48,6 +45,10 @@ html body #terakhirBaca {
 
 html.dark body #terakhirBaca {
      @apply bg-black border border-slate-400 rounded-sm;
+}
+
+html body header #navigation {
+     @apply text-teal-800;
 }
 
 body {

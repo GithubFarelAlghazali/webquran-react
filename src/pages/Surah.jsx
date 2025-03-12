@@ -68,10 +68,10 @@ export const Surah = () => {
           <div className="w-full mx-auto relative font-lato">
                <header className=" shadow-md  border dark:border-none p-2 px-3 rounded-md fixed top-0 left-0 right-0 md:h-28">
                     <a id="navigation" href="/" className="absolute  left-3 p-2 rounded-sm">
-                         <HomeIcon style="fill-current text-teal-800 dark:text-white md:w-10 md:h-10 w-7 h-7"></HomeIcon>
+                         <HomeIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></HomeIcon>
                     </a>
                     <button popoverTarget="popup" className="p-2 rounded-sm absolute top-2 right-3" id="navigation">
-                         <FindAyatIcon style="fill-current text-teal-800 dark:text-white md:w-10 md:h-10 w-7 h-7"></FindAyatIcon>
+                         <FindAyatIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></FindAyatIcon>
                     </button>
                     <h1 className="md:text-5xl text-2xl font-bold md:mb-5 mb-3 font-amiri">{surah.nama}</h1>
                     <div className="flex justify-between items-center text-2xl mb-2 md:mb-0 w-full text-teal-900 dark:text-white">
