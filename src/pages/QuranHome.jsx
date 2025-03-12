@@ -97,7 +97,7 @@ export const QuranHome = () => {
      };
 
      return (
-          <div className="w-full md:w-[50vw] mx-auto text-slate-800 dark:text-white font-lato">
+          <div className="w-full md:w-[50vw] mx-auto font-lato">
                <button onClick={changeTheme}>{theme === "light" ? <DarkIcon style="text-teal-900 fill-current"></DarkIcon> : <LightIcon style="text-white fill-current"></LightIcon>}</button>
                <header className="mb-5 w-full">
                     <h1 className="text-2xl font-bold mb-5">Al-Quran Indonesia</h1>
