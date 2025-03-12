@@ -15,6 +15,14 @@ html body ul {
      @apply text-teal-800;
 }
 
+html body header {
+     @apply bg-white;
+}
+
+html.dark body header {
+     @apply bg-slate-950;
+}
+
 html.dark {
      @apply bg-slate-950 text-white;
 }

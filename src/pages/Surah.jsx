@@ -66,7 +66,7 @@ export const Surah = () => {
 
      return (
           <div className="w-full mx-auto relative font-lato">
-               <header className="bg-white dark:bg-slate-950 shadow-md  border dark:border-none p-2 px-3 rounded-md fixed top-0 left-0 right-0 md:h-28">
+               <header className=" shadow-md  border dark:border-none p-2 px-3 rounded-md fixed top-0 left-0 right-0 md:h-28">
                     <a href="/" className="absolute  left-3 p-2 rounded-sm">
                          <HomeIcon style="fill-current text-teal-800 dark:text-white md:w-10 md:h-10 w-7 h-7"></HomeIcon>
                     </a>
