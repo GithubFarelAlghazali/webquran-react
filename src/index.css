@@ -16,7 +16,7 @@ html body ul {
 }
 
 html body header {
-     @apply bg-white;
+     @apply bg-white text-teal-800;
 }
 
 html.dark body header {
