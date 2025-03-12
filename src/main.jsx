@@ -57,6 +57,35 @@ const router = createBrowserRouter([
      },
 ]);
 
+const App = () => {
+     const [theme, setTheme] = useState(() => {
+          if (typeof window !== "undefined") {
+               return localStorage.getItem("theme") || "light";
+          }
+          return "light";
+     });
+
+     useEffect(() => {
+          if (typeof window !== "undefined") {
+               document.documentElement.classList.toggle("dark", theme === "dark");
+          }
+     }, [theme]);
+
+     useEffect(() => {
+          const storedTheme = localStorage.getItem("theme");
+          if (storedTheme) {
+               setTheme(storedTheme);
+          }
+     }, []);
+
+     return (
+          <>
+               <ScrollToSection />
+               <RouterProvider router={router} />
+          </>
+     );
+};
+
 // Render application
 createRoot(document.getElementById("root")).render(
      <StrictMode>
