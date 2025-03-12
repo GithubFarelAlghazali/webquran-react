@@ -40,7 +40,11 @@ html.dark body input {
 }
 
 html body #terakhirBaca {
-     @apply bg-teal-900 text-white rounded-sm  dark:bg-black dark:border dark:border-slate-400;
+     @apply bg-teal-900 text-white rounded-sm;
+}
+
+html.dark body #terakhirBaca {
+     @apply bg-black border border-slate-400 rounded-sm;
 }
 
 body {
