@@ -34,9 +34,8 @@ html.dark body {
 html.dark body ul {
      @apply bg-slate-950 text-white;
 }
-
 html.dark body input {
-     @apply text-white;
+     @apply text-slate-950;
 }
 
 body {
