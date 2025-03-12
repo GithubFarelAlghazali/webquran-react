@@ -39,7 +39,12 @@ export const QuranHome = () => {
           const newTheme = theme === "dark" ? "light" : "dark";
           setTheme(newTheme);
           localStorage.setItem("theme", newTheme);
-          document.documentElement.classList.toggle("dark", newTheme === "dark");
+
+          if (newTheme === "dark") {
+               document.documentElement.classList.add("dark");
+          } else {
+               document.documentElement.classList.remove("dark");
+          }
      };
 
      useEffect(() => {

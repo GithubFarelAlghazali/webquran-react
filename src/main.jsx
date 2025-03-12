@@ -45,10 +45,14 @@ const App = () => {
           const storedTheme = localStorage.getItem("theme");
           return storedTheme ? storedTheme : "light";
      });
-
      useEffect(() => {
-          document.documentElement.classList.toggle("dark", theme === "dark");
-          localStorage.setItem("theme", theme);
+          if (typeof window !== "undefined") {
+               if (theme === "dark") {
+                    document.documentElement.classList.add("dark");
+               } else {
+                    document.documentElement.classList.remove("dark");
+               }
+          }
      }, [theme]);
 
      return (
