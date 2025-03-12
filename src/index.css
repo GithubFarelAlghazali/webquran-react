@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+html{
+     color: black;
+}
+html body{
+     color: black;
+}
+
 html.dark {
      background-color: #121212;
      color: #ffffff;
@@ -19,6 +27,3 @@ body {
      transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-html{
-@apply text-teal-900;
-}
