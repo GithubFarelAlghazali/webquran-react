@@ -65,8 +65,8 @@ export const Surah = () => {
      });
 
      return (
-          <div className="w-full mx-auto dark:text-white text-slate-800  relative font-lato">
-               <header className="bg-white dark:bg-black shadow-md  border dark:border-none p-2 px-3 rounded-md fixed top-0 left-0 right-0 md:h-28">
+          <div className="w-full mx-auto relative font-lato">
+               <header className="bg-white dark:bg-slate-950 shadow-md  border dark:border-none p-2 px-3 rounded-md fixed top-0 left-0 right-0 md:h-28">
                     <a href="/" className="absolute  left-3 p-2 rounded-sm">
                          <HomeIcon style="fill-current text-teal-800 dark:text-white md:w-10 md:h-10 w-7 h-7"></HomeIcon>
                     </a>
@@ -113,7 +113,7 @@ export const Surah = () => {
                     </button>
                     <button></button>
                </header>
-               <ul className="text-teal-900 dark:text-white w-full md:w-[50vw] mx-auto mt-20">
+               <ul className=" w-full md:w-[50vw] mx-auto mt-20">
                     {bismilah ? <Basmalah></Basmalah> : ""}
                     {ayat.map((ayatt) => {
                          return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn}></ListAyat>;

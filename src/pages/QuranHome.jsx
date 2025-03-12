@@ -97,7 +97,7 @@ export const QuranHome = () => {
      };
 
      return (
-          <div className="w-full md:w-[50vw] mx-auto font-lato">
+          <div className="w-full md:w-[50vw] mx-auto  font-lato">
                <button onClick={changeTheme}>{theme === "light" ? <DarkIcon style="text-teal-900 fill-current"></DarkIcon> : <LightIcon style="text-white fill-current"></LightIcon>}</button>
                <header className="mb-5 w-full">
                     <h1 className="text-2xl font-bold mb-5">Al-Quran Indonesia</h1>
@@ -113,7 +113,7 @@ export const QuranHome = () => {
                ) : (
                     ""
                )}
-               <ul className="text-teal-900 dark:text-white w-fll h-[60vh] overflow-scroll">
+               <ul className="w-fll h-[60vh] overflow-scroll">
                     {surahDicari.map((surah) => {
                          return (
                               <ListSurah key={surah.nomor} nomor={surah.nomor} nama={surah.nama} namaLatin={surah.nama_latin} jumlah_ayat={surah.jumlah_ayat} tempatTurun={surah.tempat_turun}>
