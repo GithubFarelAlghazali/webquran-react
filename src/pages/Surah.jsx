@@ -74,7 +74,7 @@ export const Surah = () => {
                          <FindAyatIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></FindAyatIcon>
                     </button>
                     <h1 className="md:text-5xl text-2xl font-bold md:mb-5 mb-3 font-amiri">{surah.nama}</h1>
-                    <div className="flex justify-between items-center text-2xl mb-2 md:mb-0 w-full text-teal-900 dark:text-white">
+                    <div className="flex justify-between items-center text-2xl mb-2 md:mb-0 w-full ">
                          {selanjutnya ? (
                               <a href={"/quran/" + selanjutnya.nomor}>
                                    <ArrowBack style="fill-current  w-7 h-7" />
