@@ -100,7 +100,7 @@ export const QuranHome = () => {
           <div className="w-full md:w-[50vw] mx-auto  font-lato">
                <button onClick={changeTheme}>{theme === "light" ? <DarkIcon style="text-teal-900 fill-current"></DarkIcon> : <LightIcon style="text-white fill-current"></LightIcon>}</button>
                <header className="mb-5 w-full">
-                    <h1 className="text-2xl font-bold mb-5">Al-Quran Indonesia</h1>
+                    <h1 className="text-2xl font-bold mb-5">Ngaji Quran - Al-Qur'an Indonesia</h1>
                     <div className="w-full rounded-md overflow-hidden shadow-lg bg-red-300">
                          <input type="text" placeholder="Cari Surah" id="cari_surah" className="border-b border-b-slate-400 border w-full p-2" autoComplete="false" onChange={cariSurah} />
                     </div>

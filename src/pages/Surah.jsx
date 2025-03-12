@@ -73,7 +73,7 @@ export const Surah = () => {
                     <button popoverTarget="popup" className="p-2 rounded-sm absolute top-2 right-3" id="navigation">
                          <FindAyatIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></FindAyatIcon>
                     </button>
-                    <h1 className="md:text-5xl text-2xl font-bold md:mb-5 mb-3 font-amiri">{surah.nama}</h1>
+                    <h1 className="md:text-5xl text-2xl font-bold md:mb-5 mb-3 font-uthmani">{surah.nama}</h1>
                     <div className="flex justify-between items-center text-2xl mb-2 md:mb-0 w-full ">
                          {selanjutnya ? (
                               <a href={"/quran/" + selanjutnya.nomor}>
