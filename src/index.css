@@ -47,8 +47,14 @@ html.dark body #terakhirBaca {
      @apply bg-black border border-slate-400 rounded-sm;
 }
 
-html body header #navigation {
+html body header #navigation,
+html body header button {
      @apply text-teal-800;
+}
+
+html.dark body header #navigation,
+html.dark body header button {
+     @apply text-white;
 }
 
 body {
