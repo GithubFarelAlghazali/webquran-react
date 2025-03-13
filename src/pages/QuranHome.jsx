@@ -113,10 +113,11 @@ export const QuranHome = () => {
                ) : (
                     ""
                )}
-               <ul className="w-fll h-[60vh] overflow-scroll">
-                    {surahDicari.map((surah) => {
+               <ul className="w-fll h-[60vh] overflow-y-scroll">
+                    {surahDicari.map((surah, index) => {
+                         let indexArr = index + 1;
                          return (
-                              <ListSurah key={surah.nomor} nomor={surah.nomor} nama={surah.nama} namaLatin={surah.nama_latin} jumlah_ayat={surah.jumlah_ayat} tempatTurun={surah.tempat_turun}>
+                              <ListSurah key={surah.nomor} nomor={surah.nomor} nama={surah.nama} namaLatin={surah.nama_latin} jumlah_ayat={surah.jumlah_ayat} tempatTurun={surah.tempat_turun} garis={surahDicari.length !== indexArr}>
                                    {surah.nomor}
                               </ListSurah>
                          );

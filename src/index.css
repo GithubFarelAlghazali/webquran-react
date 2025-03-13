@@ -14,14 +14,14 @@ html {
      @apply text-slate-800;
 }
 html body {
-     @apply text-slate-800;
+     @apply text-slate-800 bg-zinc-100;
 }
 html body ul {
      @apply text-teal-800;
 }
 
 html body header {
-     @apply bg-white;
+     @apply bg-zinc-100;
 }
 
 html.dark body header {

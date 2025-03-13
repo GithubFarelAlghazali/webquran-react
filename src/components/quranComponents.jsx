@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { AddToBookmark, CopyIcon } from "../assets/icons";
 import { setTerakhirDibaca } from "../services/quran.service";
 
 export const ListSurah = (props) => {
-     const { nomor, children, nama, namaLatin, jumlah_ayat, tempatTurun } = props;
+     const { nomor, children, nama, namaLatin, jumlah_ayat, tempatTurun, garis } = props;
      return (
-          <li className="border-b border-b-slate-700 justify-between p-2 gap-2 flex">
+          <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between p-2 gap-2 flex"}>
                <div className="w-[10%] text-center items-center justify-center">
                     <h3>{nomor}</h3>
                </div>
@@ -22,19 +23,30 @@ export const ListSurah = (props) => {
 };
 
 export const ListAyat = (props) => {
-     const { id, nomor, ar, idn, nama, nomorSurah } = props;
+     const { id, nomor, ar, idn, nama, nomorSurah, garis } = props;
+     const [notifStatus, setNotifStatus] = useState({ status: false, mes: "" });
+
+     const notif = (mes) => {
+          setNotifStatus({ status: true, mes });
+          setTimeout(() => {
+               setNotifStatus({ status: false, mes });
+          }, 3000);
+          return notifStatus;
+     };
 
      const copy = `Allah Subhanahu wa ta'ala berfirman:\n${ar}\nArtinya: ${idn}\nSurah ${nama} ayat ${nomor}`;
      const copyAyat = () => {
           navigator.clipboard.writeText(copy);
+          notif("Ayat berhasil disalin");
      };
 
      const handleBookmark = () => {
           setTerakhirDibaca(id, nomorSurah, nama, nomor);
+          notif("Ayat berhasil ditandai sebagai terakhir baca");
      };
 
      return (
-          <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex scroll-m-30" id={id}>
+          <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between py-7 px-2  gap-2 flex scroll-m-40 "} id={id}>
                <div className="w-[10%] text-center items-center flex flex-col justify-start gap-3">
                     <h3>{nomor}</h3>
                     <button onClick={handleBookmark}>
@@ -52,12 +64,13 @@ export const ListAyat = (props) => {
                          {idn}
                     </h3>
                </div>
+               {notifStatus.status ? <div className=" fixed bottom-[10vh] left-10 right-10 md:left-[40vw] md:right-[40vw] bg-white border border-slate-600 p-2 rounded-md text-black">{notifStatus.mes}</div> : ""}
           </li>
      );
 };
 export const Basmalah = () => {
      return (
-          <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex scroll-m-64 text-center">
+          <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex  text-center">
                <div className="w-full ">
                     <h2 className="font-semibold text-2xl md:text-3xl font-uthmani  mb-7 leading-[2em] md:leading-[2em]">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
 
