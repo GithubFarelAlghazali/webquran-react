@@ -29,4 +29,4 @@ export const setTerakhirDibaca = (id, nomorSurah, surah, ayat) => {
      localStorage.setItem("terakhirDibaca", JSON.stringify(terakhirDibaca));
 };
 
-export const getTerakhirDibaca = JSON.parse(localStorage.getItem("terakhirDibaca"));
+export const getTerakhirDibaca = localStorage.getItem("terakhirDibaca") ? JSON.parse(localStorage.getItem("terakhirDibaca")) : "";
