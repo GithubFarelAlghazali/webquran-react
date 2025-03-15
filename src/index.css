@@ -10,15 +10,15 @@
      src: url("./assets/KfgqpcHafsUthmanicScriptRegular-1jGEe.ttf");
 }
 
-html {
+/* html {
      @apply text-slate-800;
 }
 html body {
      @apply text-slate-800 bg-zinc-100;
 }
-html body ul {
-     @apply text-teal-800;
-}
+/* html body ul {
+     @apply text-yellow-900;
+} 
 
 html body header {
      @apply bg-zinc-100;
@@ -45,23 +45,13 @@ html.dark body input {
 }
 
 html body #terakhirBaca {
-     @apply bg-teal-900 text-white rounded-sm;
+     @apply bg-teal-800 text-white rounded-sm;
 }
 
 html.dark body #terakhirBaca {
      @apply bg-black border border-slate-400 rounded-sm;
 }
 
-html body header #navigation,
-html body header button {
-     @apply text-teal-800;
-}
-
-html.dark body header #navigation,
-html.dark body header button {
-     @apply text-white;
-}
-
 body {
      transition: background-color 0.3s ease, color 0.3s ease;
-}
+} */

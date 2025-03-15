@@ -10,7 +10,6 @@ export const Surah = () => {
      const [ayat, setAyat] = useState([]);
      const [idAyatTujuan, setIdAyatTujuan] = useState();
      const [bismilah, setBismilah] = useState(true);
-     const [theme, setTheme] = useState("light");
      const location = useLocation();
 
      // Scroll to the section when ayat is loaded
@@ -53,27 +52,23 @@ export const Surah = () => {
           setIdAyatTujuan(foundId);
      };
 
-     useEffect(() => {
-          localStorage.getItem("theme") ? setTheme(localStorage.getItem("theme")) : localStorage.setItem("theme", theme);
-
-          const html = document.querySelector("html");
-          if (theme === "dark") {
-               html.classList.add("dark");
-          } else {
-               html.classList.remove("dark");
-          }
-     });
-
      return (
-          <div className="w-full mx-auto relative font-lato ">
-               <header className=" shadow-md  border dark:border-none p-2 px-3 rounded-md fixed top-0 left-0 right-0 md:h-28 ">
-                    <a id="navigation" href="/" className="absolute  left-3 p-2 rounded-sm">
-                         <HomeIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></HomeIcon>
-                    </a>
-                    <button popoverTarget="popup" className="p-2 rounded-sm absolute top-2 right-3" id="navigation">
-                         <FindAyatIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></FindAyatIcon>
-                    </button>
-                    <h1 className="md:text-5xl text-3xl font-bold md:mb-5 mb-3 font-uthmani mt-4 md:mt-0">{surah.nama}</h1>
+          <div className="w-full mx-auto relative font-lato md:w-[50vw] ">
+               <header className=" shadow-md bg-gradient-to-r from-sky-500 to-green-400 dark:bg-gradient-to-r dark:from-blue-500 dark:to-purple-600 text-white border dark:border-none p-2 px-3 rounded-lg sticky top-2 w-full">
+                    <div className="flex justify-between w-full">
+                         <a id="navigation" href="/" className="  ">
+                              <HomeIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></HomeIcon>
+                         </a>
+                         <button popoverTarget="popup" className=" " id="navigation">
+                              <FindAyatIcon style="fill-current md:w-10 md:h-10 w-7 h-7"></FindAyatIcon>
+                         </button>
+                    </div>
+                    <h1 className="md:text-5xl text-4xl font-bold  font-uthmani  ">{surah.nama}</h1>
+                    <h2 className="capitalize">
+                         {surah.tempat_turun}
+                         <br />
+                         {surah.jumlah_ayat} ayat
+                    </h2>
                     <div className="flex justify-between items-center text-2xl mb-2 md:mb-0 w-full ">
                          {selanjutnya ? (
                               <a href={"/quran/" + selanjutnya.nomor}>
@@ -90,18 +85,7 @@ export const Surah = () => {
                               " "
                          )}
                     </div>
-                    <hr className="dark:border-b-white border-b-teal-700 border-b md:hidden" />
 
-                    <div className="flex justify-between w-full md:w-[80%] mx-auto text-sm md:text-base md:-translate-y-20">
-                         <h4 className="capitalize text-left">
-                              Surah ke-{surah.nomor} <br />
-                              {surah.arti}
-                         </h4>
-                         <h4 className="capitalize text-right">
-                              {surah.tempat_turun} <br />
-                              {surah.jumlah_ayat} Ayat
-                         </h4>
-                    </div>
                     <div popover="" id="popup" className="border border-slate-300 bg-white p-5 rounded-md shadow-md fixed  md:left-80 md:right-80 none">
                          {surah.nama_latin} ayat:
                          <br />
@@ -111,14 +95,12 @@ export const Surah = () => {
                               Cari
                          </a>
                     </div>
-
-                    <button></button>
                </header>
-               <ul className=" w-full md:w-[50vw] mx-auto mt-40 md:mt-20">
+               <ul className=" w-full md:w-[50vw] mx-auto dark:text-white">
                     {bismilah ? <Basmalah></Basmalah> : ""}
                     {ayat.map((ayatt, index) => {
                          let indexArr = index + 1;
-                         return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn} garis={ayat.length !== indexArr}></ListAyat>;
+                         return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn} tr={ayatt.tr} garis={ayat.length !== indexArr}></ListAyat>;
                     })}
                </ul>
           </div>

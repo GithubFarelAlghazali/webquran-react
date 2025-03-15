@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { ListSurah } from "../components/quranComponents";
 import { Link } from "react-router-dom";
 import { DarkIcon, LightIcon } from "../assets/icons";
+import { getTerakhirDibaca } from "../services/quran.service";
+import lightImg from "../assets/banner-light.png";
+import darkImg from "../assets/banner-dark.png";
 
 export const QuranHome = () => {
      const [surahs, setSurah] = useState([]);
      const [surahDicari, setSurahDicari] = useState([]);
-     const [terakhirDibaca, setTerakhirDibaca] = useState("");
-     const [surahTerakhir, setSurahTerakhir] = useState("");
-     const [ayatTerakhir, setAyatTerakhir] = useState("");
+     // const [terakhirDibaca, setTerakhirDibaca] = useState("");
+     // const [surahTerakhir, setSurahTerakhir] = useState("");
+     // const [ayatTerakhir, setAyatTerakhir] = useState("");
      const [theme, setTheme] = useState(() => {
           if (typeof window !== "undefined") {
                return localStorage.getItem("theme") || "light";
@@ -19,7 +22,7 @@ export const QuranHome = () => {
 
      useEffect(() => {
           if (typeof window !== "undefined") {
-               document.documentElement.classList.toggle("dark", theme === "dark");
+               document.body.classList.toggle("dark", theme === "dark");
           }
      }, [theme]);
 
@@ -27,11 +30,6 @@ export const QuranHome = () => {
           getSurahList((data) => {
                setSurah(data);
                setSurahDicari(data);
-               if (localStorage.getItem("terakhirDibaca")) {
-                    setTerakhirDibaca(localStorage.getItem("terakhirDibaca"));
-                    setAyatTerakhir(localStorage.getItem("ayatTerakhir"));
-                    setSurahTerakhir(localStorage.getItem("suratTerakhir"));
-               }
           });
      }, []);
 
@@ -51,36 +49,8 @@ export const QuranHome = () => {
           getSurahList((data) => {
                setSurah(data);
                setSurahDicari(data);
-               if (!localStorage.getItem("terakhirDibaca")) {
-                    setTerakhirDibaca("");
-                    setAyatTerakhir("");
-                    setSurahTerakhir("");
-               } else {
-                    setTerakhirDibaca(localStorage.getItem("terakhirDibaca"));
-                    setAyatTerakhir(localStorage.getItem("ayatTerakhir"));
-                    setSurahTerakhir(localStorage.getItem("suratTerakhir"));
-               }
           });
      }, []);
-
-     // useEffect(() => {
-     //      localStorage.getItem("theme") ? setTheme(localStorage.getItem("theme")) : localStorage.setItem("theme", theme);
-
-     //      const html = document.querySelector("html");
-     //      if (theme === "dark") {
-     //           html.classList.add("dark");
-     //           document.body.style.background = "black";
-     //      } else {
-     //           html.classList.remove("dark");
-     //           document.body.style.background = "white";
-     //      }
-     // });
-
-     // const changeTheme = () => {
-     //      const newTheme = theme === "dark" ? "light" : "dark";
-     //      localStorage.setItem("theme", newTheme);
-     //      setTheme(newTheme);
-     // };
 
      const cariSurah = (event) => {
           const input = event.target.value.toLowerCase(); // Ubah input ke lowercase
@@ -99,21 +69,23 @@ export const QuranHome = () => {
      return (
           <div className="w-full md:w-[50vw] mx-auto  font-lato">
                <button onClick={changeTheme}>{theme === "light" ? <DarkIcon style="text-teal-900 fill-current"></DarkIcon> : <LightIcon style="text-white fill-current"></LightIcon>}</button>
-               <header className="mb-5 w-full">
-                    <h1 className="text-2xl font-bold mb-5">Ngaji Quran - Al-Qur'an Indonesia</h1>
-                    <div className="w-full rounded-md overflow-hidden shadow-lg bg-red-300">
-                         <input type="text" placeholder="Cari Surah" id="cari_surah" className="border-b border-b-slate-400 border w-full p-2" autoComplete="false" onChange={cariSurah} />
+               <main className="rounded-lg mb-4 overflow-hidden">
+                    <img src={localStorage.getItem("theme") === "light" ? lightImg : darkImg} alt="" />
+               </main>
+               <header className="mb-5 w-full sticky top-3 border border-slate-700 rounded-lg">
+                    <div className="w-full rounded-lg overflow-hidden shadow-lg">
+                         <input type="text" placeholder="Cari Surah" id="cari_surah" className="border-b  border w-full p-2" autoComplete="false" onChange={cariSurah} />
                     </div>
                </header>
 
-               {localStorage.getItem("terakhirDibaca") !== null ? (
-                    <section id="terakhirBaca" className=" shadow-md rounded-sm p-2 w-full mb-3">
-                         <Link to={"quran/" + terakhirDibaca}>{`atau, lanjutkan membaca ${surahTerakhir} ayat ${ayatTerakhir}`}</Link>
+               {getTerakhirDibaca !== null ? (
+                    <section id="terakhirBaca" className=" shadow-md rounded-lg overflow-hidden p-2 w-full mb-3 bg-teal-900 text-white dark:bg-violet-950">
+                         <Link to={"quran/" + getTerakhirDibaca.href}>{`atau, lanjutkan membaca ${getTerakhirDibaca.surah} ayat ${getTerakhirDibaca.ayat}`}</Link>
                     </section>
                ) : (
                     ""
                )}
-               <ul className="w-fll h-[60vh] overflow-y-scroll">
+               <ul className="w-full ">
                     {surahDicari.map((surah, index) => {
                          let indexArr = index + 1;
                          return (

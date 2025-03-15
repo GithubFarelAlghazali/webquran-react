@@ -21,9 +21,12 @@ export const getSurahAyat = (id, callback) => {
 
 export const setTerakhirDibaca = (id, nomorSurah, surah, ayat) => {
      const dibaca = `${nomorSurah}#${id}`;
-     const suratTerakhir = surah;
-     const ayatTerakhir = ayat;
-     localStorage.setItem("terakhirDibaca", dibaca);
-     localStorage.setItem("suratTerakhir", suratTerakhir);
-     localStorage.setItem("ayatTerakhir", ayatTerakhir);
+     const terakhirDibaca = {
+          href: dibaca,
+          surah: surah,
+          ayat: ayat,
+     };
+     localStorage.setItem("terakhirDibaca", JSON.stringify(terakhirDibaca));
 };
+
+export const getTerakhirDibaca = JSON.parse(localStorage.getItem("terakhirDibaca"));

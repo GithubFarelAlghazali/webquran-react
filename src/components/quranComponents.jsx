@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { AddToBookmark, CopyIcon } from "../assets/icons";
+import { Bookmark, CopyIcon } from "../assets/icons";
 import { setTerakhirDibaca } from "../services/quran.service";
 
 export const ListSurah = (props) => {
      const { nomor, children, nama, namaLatin, jumlah_ayat, tempatTurun, garis } = props;
      return (
-          <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between p-2 gap-2 flex"}>
+          <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between p-2 gap-2 flex text-slate-800 dark:text-white"}>
                <div className="w-[10%] text-center items-center justify-center">
                     <h3>{nomor}</h3>
                </div>
@@ -16,15 +16,16 @@ export const ListSurah = (props) => {
                               <span className="capitalize">{tempatTurun}</span> | {jumlah_ayat} Ayat
                          </span>
                     </h2>
-                    <h3 className="text-3xl items-center font-uthmani">{nama}</h3>
+                    <h3 className="text-3xl items-center font-uthmani text-teal-800 dark:text-violet-200">{nama}</h3>
                </a>
           </li>
      );
 };
 
 export const ListAyat = (props) => {
-     const { id, nomor, ar, idn, nama, nomorSurah, garis } = props;
+     const { id, nomor, ar, idn, nama, nomorSurah, garis, tr } = props;
      const [notifStatus, setNotifStatus] = useState({ status: false, mes: "" });
+     const parser = new DOMParser();
 
      const notif = (mes) => {
           setNotifStatus({ status: true, mes });
@@ -46,20 +47,20 @@ export const ListAyat = (props) => {
      };
 
      return (
-          <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between py-7 px-2  gap-2 flex scroll-m-40 "} id={id}>
+          <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between py-7 px-2  gap-2 flex scroll-m-40"} id={id}>
                <div className="w-[10%] text-center items-center flex flex-col justify-start gap-3">
                     <h3>{nomor}</h3>
                     <button onClick={handleBookmark}>
-                         <AddToBookmark style="fill-current text-teal-800"></AddToBookmark>
+                         <Bookmark style="fill-current text-teal-800 dark:text-purple-500"></Bookmark>
                     </button>
                     <button onClick={copyAyat} popoverTarget="popupAyat">
-                         <CopyIcon style="fill-current text-teal-800"></CopyIcon>
+                         <CopyIcon style="fill-current text-teal-800 dark:text-purple-500"></CopyIcon>
                     </button>
                </div>
                <div className="w-full ">
-                    <h2 className="font-semibold text-2xl md:text-3xl font-uthmani text-right mb-7 leading-[2em] md:leading-[2em]">{ar}</h2>
+                    <h2 className="font-semibold text-3xl font-uthmani text-right mb-7 leading-[2em] md:leading-[2em] text-teal-900 dark:text-inherit">{ar}</h2>
 
-                    <h3 className="text-left">
+                    <h3 className="text-left text-slate-800 dark:text-inherit">
                          <b>Artinya: </b>
                          {idn}
                     </h3>
