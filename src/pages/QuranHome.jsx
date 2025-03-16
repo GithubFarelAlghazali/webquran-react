@@ -10,9 +10,6 @@ import darkImg from "../assets/banner-dark.png";
 export const QuranHome = () => {
      const [surahs, setSurah] = useState([]);
      const [surahDicari, setSurahDicari] = useState([]);
-     // const [terakhirDibaca, setTerakhirDibaca] = useState("");
-     // const [surahTerakhir, setSurahTerakhir] = useState("");
-     // const [ayatTerakhir, setAyatTerakhir] = useState("");
      const [theme, setTheme] = useState(() => {
           if (typeof window !== "undefined") {
                return localStorage.getItem("theme") || "light";
@@ -22,7 +19,7 @@ export const QuranHome = () => {
 
      useEffect(() => {
           if (typeof window !== "undefined") {
-               document.body.classList.toggle("dark", theme === "dark");
+               document.documentElement.classList.toggle("dark", theme === "dark");
           }
      }, [theme]);
 
@@ -44,13 +41,6 @@ export const QuranHome = () => {
                document.documentElement.classList.remove("dark");
           }
      };
-
-     useEffect(() => {
-          getSurahList((data) => {
-               setSurah(data);
-               setSurahDicari(data);
-          });
-     }, []);
 
      const cariSurah = (event) => {
           const input = event.target.value.toLowerCase(); // Ubah input ke lowercase
@@ -85,11 +75,11 @@ export const QuranHome = () => {
                ) : (
                     ""
                )}
-               <ul className="w-full ">
+               <ul className="w-full overflow-x-scroll h-[70vh]">
                     {surahDicari.map((surah, index) => {
                          let indexArr = index + 1;
                          return (
-                              <ListSurah key={surah.nomor} nomor={surah.nomor} nama={surah.nama} namaLatin={surah.nama_latin} jumlah_ayat={surah.jumlah_ayat} tempatTurun={surah.tempat_turun} garis={surahDicari.length !== indexArr}>
+                              <ListSurah key={surah.nomor} nomor={surah.nomor} nama={surah.nama} namaLatin={surah.namaLatin} jumlah_ayat={surah.jumlahAyat} tempatTurun={surah.tempatTurun} garis={surahDicari.length !== indexArr}>
                                    {surah.nomor}
                               </ListSurah>
                          );

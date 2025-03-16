@@ -11,6 +11,15 @@ export const Surah = () => {
      const [idAyatTujuan, setIdAyatTujuan] = useState();
      const [bismilah, setBismilah] = useState(true);
      const location = useLocation();
+     useEffect(() => {
+          getSurahAyat(id, (data) => {
+               setSurah(data);
+               setAyat(data.ayat);
+               if (data.nomor == 1 || data.nomor == 9) {
+                    setBismilah(false);
+               }
+          });
+     }, [id]);
 
      // Scroll to the section when ayat is loaded
      useEffect(() => {
@@ -25,27 +34,16 @@ export const Surah = () => {
           }
      }, [ayat, location]);
 
-     useEffect(() => {
-          getSurahAyat(id, (data) => {
-               setSurah(data);
-               setAyat(data.ayat);
-               if (data.nomor == 1 || data.nomor == 9) {
-                    setBismilah(false);
-               }
-          });
-     }, [id]);
-
-     const selanjutnya = surah.surat_selanjutnya;
-     const sebelumnya = surah.surat_sebelumnya;
-     // let idTujuan;
+     const selanjutnya = surah.suratSelanjutnya;
+     const sebelumnya = surah.suratSebelumnya;
      const cariAyat = (event) => {
           const cariValue = event.target.value;
-          let foundId = null;
+          let foundId = 0;
 
           for (let i = 0; i < ayat.length; i++) {
-               if (ayat[i].nomor === parseInt(cariValue)) {
+               if (ayat[i].nomorAyat === parseInt(cariValue)) {
                     // Pastikan perbandingan menggunakan integer
-                    foundId = ayat[i].id;
+                    foundId = ayat[i].nomorAyat;
                     break;
                }
           }
@@ -65,9 +63,9 @@ export const Surah = () => {
                     </div>
                     <h1 className="md:text-5xl text-4xl font-bold  font-uthmani  ">{surah.nama}</h1>
                     <h2 className="capitalize">
-                         {surah.tempat_turun}
+                         {surah.tempatTurun}
                          <br />
-                         {surah.jumlah_ayat} ayat
+                         {surah.jumlahAyat} ayat
                     </h2>
                     <div className="flex justify-between items-center text-2xl mb-2 md:mb-0 w-full ">
                          {selanjutnya ? (
@@ -87,7 +85,7 @@ export const Surah = () => {
                     </div>
 
                     <div popover="" id="popup" className="border border-slate-300 bg-white p-5 rounded-md shadow-md fixed  md:left-80 md:right-80 none">
-                         {surah.nama_latin} ayat:
+                         {surah.namaLatin} ayat:
                          <br />
                          <input type="number" max={ayat.length} className="my-2 border-b border-b-slate-700 focus:outline-none" placeholder={"1-" + ayat.length} onChange={cariAyat} id="cari" />
                          <br />
@@ -100,7 +98,19 @@ export const Surah = () => {
                     {bismilah ? <Basmalah></Basmalah> : ""}
                     {ayat.map((ayatt, index) => {
                          let indexArr = index + 1;
-                         return <ListAyat id={ayatt.id} nama={surah.nama_latin} nomorSurah={surah.nomor} nomor={ayatt.nomor} ar={ayatt.ar} idn={ayatt.idn} tr={ayatt.tr} garis={ayat.length !== indexArr}></ListAyat>;
+                         return (
+                              <ListAyat
+                                   key={ayatt.nomorAyat}
+                                   id={ayatt.nomorAyat}
+                                   nama={surah.namaLatin}
+                                   nomorSurah={surah.nomor}
+                                   nomor={ayatt.nomorAyat}
+                                   ar={ayatt.teksArab}
+                                   idn={ayatt.teksIndonesia}
+                                   tr={ayatt.teksLatin}
+                                   garis={ayat.length !== indexArr}
+                              ></ListAyat>
+                         );
                     })}
                </ul>
           </div>

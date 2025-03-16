@@ -25,7 +25,6 @@ export const ListSurah = (props) => {
 export const ListAyat = (props) => {
      const { id, nomor, ar, idn, nama, nomorSurah, garis, tr } = props;
      const [notifStatus, setNotifStatus] = useState({ status: false, mes: "" });
-     const parser = new DOMParser();
 
      const notif = (mes) => {
           setNotifStatus({ status: true, mes });
@@ -42,7 +41,7 @@ export const ListAyat = (props) => {
      };
 
      const handleBookmark = () => {
-          setTerakhirDibaca(id, nomorSurah, nama, nomor);
+          setTerakhirDibaca(nomor, nomorSurah, nama, nomor);
           notif("Ayat berhasil ditandai sebagai terakhir baca");
      };
 
@@ -59,7 +58,7 @@ export const ListAyat = (props) => {
                </div>
                <div className="w-full ">
                     <h2 className="font-semibold text-3xl font-uthmani text-right mb-7 leading-[2em] md:leading-[2em] text-teal-900 dark:text-inherit">{ar}</h2>
-
+                    <p className="text-left mb-2 text-teal-950 dark:text-purple-400" dangerouslySetInnerHTML={{ __html: tr }}></p>
                     <h3 className="text-left text-slate-800 dark:text-inherit">
                          <b>Artinya: </b>
                          {idn}

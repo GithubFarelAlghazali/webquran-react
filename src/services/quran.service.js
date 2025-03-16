@@ -1,18 +1,18 @@
 import axios from "axios";
 
 export const getSurahList = (callback) => {
-     axios.get("https://quran-api.santrikoding.com/api/surah")
+     axios.get("https://equran.id/api/v2/surat")
           .then((res) => {
-               callback(res.data);
+               callback(res.data.data);
           })
           .catch((err) => {
                console.log(err);
           });
 };
 export const getSurahAyat = (id, callback) => {
-     axios.get("https://quran-api.santrikoding.com/api/surah/" + id.id)
+     axios.get("https://equran.id/api/v2/surat/" + id.id)
           .then((res) => {
-               callback(res.data);
+               callback(res.data.data);
           })
           .catch((err) => {
                callback(err);
