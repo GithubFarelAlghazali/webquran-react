@@ -14,7 +14,7 @@ export const QuranHome = () => {
           if (typeof window !== "undefined") {
                return localStorage.getItem("theme") || "light";
           }
-          return "light";
+          // return "light";
      });
 
      useEffect(() => {
@@ -46,7 +46,7 @@ export const QuranHome = () => {
           const input = event.target.value.toLowerCase(); // Ubah input ke lowercase
           if (input !== "") {
                const hasilPencarian = surahs.filter((surah) => {
-                    const namaLatin = surah.nama_latin.toLowerCase();
+                    const namaLatin = surah.namaLatin.toLowerCase();
                     const nomor = surah.nomor.toString();
                     return namaLatin.includes(input) || nomor.includes(input);
                });
@@ -60,7 +60,7 @@ export const QuranHome = () => {
           <div className="w-full md:w-[50vw] mx-auto  font-lato">
                <button onClick={changeTheme}>{theme === "light" ? <DarkIcon style="text-teal-900 fill-current"></DarkIcon> : <LightIcon style="text-white fill-current"></LightIcon>}</button>
                <main className="rounded-lg mb-4 overflow-hidden">
-                    <img src={localStorage.getItem("theme") === "light" ? lightImg : darkImg} alt="" />
+                    <img src={localStorage.getItem("theme") === "light" ? lightImg : darkImg} alt="ngajiquran hero-image" />
                </main>
                <header className="mb-5 w-full sticky top-3 border border-slate-700 rounded-lg">
                     <div className="w-full rounded-lg overflow-hidden shadow-lg">
