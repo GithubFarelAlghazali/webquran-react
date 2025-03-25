@@ -9,6 +9,7 @@ export default {
                     quicksand: ["Quicksand", "sans-serif"],
                     amiri: ["Amiri Quran", "serif"],
                     uthmani: ["uthmani", "serif"],
+                    indopak: ["indopak", "serif"],
                },
           },
      },

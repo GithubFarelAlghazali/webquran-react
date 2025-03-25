@@ -9,49 +9,7 @@
      font-family: "uthmani";
      src: url("./assets/KfgqpcHafsUthmanicScriptRegular-1jGEe.ttf");
 }
-
-/* html {
-     @apply text-slate-800;
+@font-face {
+     font-family: "indopak";
+     src: url("./assets/Naskh-Nastaleeq-IndoPak-QWBW.ttf");
 }
-html body {
-     @apply text-slate-800 bg-zinc-100;
-}
-/* html body ul {
-     @apply text-yellow-900;
-} 
-
-html body header {
-     @apply bg-zinc-100;
-}
-
-html.dark body header {
-     @apply bg-slate-950;
-}
-
-html.dark {
-     @apply bg-slate-950 text-white;
-}
-
-html.dark body {
-     @apply bg-slate-950 text-white;
-}
-
-html.dark body ul {
-     @apply bg-slate-950 text-white;
-}
-
-html.dark body input {
-     @apply text-slate-950;
-}
-
-html body #terakhirBaca {
-     @apply bg-teal-800 text-white rounded-sm;
-}
-
-html.dark body #terakhirBaca {
-     @apply bg-black border border-slate-400 rounded-sm;
-}
-
-body {
-     transition: background-color 0.3s ease, color 0.3s ease;
-} */

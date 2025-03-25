@@ -3,8 +3,8 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import "./index.css";
 import { QuranHome } from "./pages/QuranHome.jsx";
-import { Jadwal } from "./pages/Jadwal.jsx";
 import { Surah } from "./pages/Surah.jsx";
+import { ThemeProvider } from "./hooks/useTheme.jsx";
 import "./App.css";
 
 const ScrollToSection = () => {
@@ -34,10 +34,6 @@ const router = createBrowserRouter([
           path: "/quran/:id",
           element: <Surah />,
      },
-     {
-          path: "/jadwal",
-          element: <Jadwal />,
-     },
 ]);
 
 const App = () => {
@@ -56,9 +52,11 @@ const App = () => {
      }, [theme]);
 
      return (
-          <RouterProvider router={router}>
-               <ScrollToSection />
-          </RouterProvider>
+          <ThemeProvider>
+               <RouterProvider router={router}>
+                    <ScrollToSection />
+               </RouterProvider>
+          </ThemeProvider>
      );
 };
 

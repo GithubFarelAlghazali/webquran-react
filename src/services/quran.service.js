@@ -30,3 +30,12 @@ export const setTerakhirDibaca = (id, nomorSurah, surah, ayat) => {
 };
 
 export const getTerakhirDibaca = localStorage.getItem("terakhirDibaca") ? JSON.parse(localStorage.getItem("terakhirDibaca")) : "";
+
+// export const themeSettings = (theme, font, audio) => {
+//      const themeSetting = {
+//           theme,
+//           font,
+//           audio,
+//      };
+//      localStorage.setItem("theme", JSON.stringify(themeSetting));
+// };

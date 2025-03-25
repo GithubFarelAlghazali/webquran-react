@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Bookmark, CopyIcon } from "../assets/icons";
 import { setTerakhirDibaca } from "../services/quran.service";
+import { useTheme } from "../hooks/useTheme";
+
+const arFont = localStorage.getItem("font");
 
 export const ListSurah = (props) => {
-     const { nomor, children, nama, namaLatin, jumlah_ayat, tempatTurun, garis } = props;
+     const { nomor, children, nama, namaLatin, jumlah_ayat, tempatTurun, garis, arFont } = props;
      return (
           <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between p-2 gap-2 flex text-slate-800 dark:text-white"}>
                <div className="w-[10%] text-center items-center justify-center">
@@ -16,7 +19,7 @@ export const ListSurah = (props) => {
                               <span className="capitalize">{tempatTurun}</span> | {jumlah_ayat} Ayat
                          </span>
                     </h2>
-                    <h3 className="text-3xl items-center font-uthmani text-teal-800 dark:text-violet-200">{nama}</h3>
+                    <h3 className={`text-3xl items-center font-uthmani text-teal-800 dark:text-violet-200 transition-all duration-75`}>{nama}</h3>
                </a>
           </li>
      );
@@ -25,12 +28,13 @@ export const ListSurah = (props) => {
 export const ListAyat = (props) => {
      const { id, nomor, ar, idn, nama, nomorSurah, garis, tr } = props;
      const [notifStatus, setNotifStatus] = useState({ status: false, mes: "" });
+     const { isTr, arFont } = useTheme();
 
      const notif = (mes) => {
           setNotifStatus({ status: true, mes });
           setTimeout(() => {
                setNotifStatus({ status: false, mes });
-          }, 3000);
+          }, 7000);
           return notifStatus;
      };
 
@@ -50,15 +54,15 @@ export const ListAyat = (props) => {
                <div className="w-[10%] text-center items-center flex flex-col justify-start gap-3">
                     <h3>{nomor}</h3>
                     <button onClick={handleBookmark}>
-                         <Bookmark style="fill-current text-teal-800 dark:text-purple-500"></Bookmark>
+                         <Bookmark style="fill-current text-teal-800 dark:text-cyan-500"></Bookmark>
                     </button>
                     <button onClick={copyAyat} popoverTarget="popupAyat">
-                         <CopyIcon style="fill-current text-teal-800 dark:text-purple-500"></CopyIcon>
+                         <CopyIcon style="fill-current text-teal-800 dark:text-cyan-500"></CopyIcon>
                     </button>
                </div>
                <div className="w-full ">
-                    <h2 className="font-semibold text-3xl font-uthmani text-right mb-7 leading-[2em] md:leading-[2em] text-teal-900 dark:text-inherit">{ar}</h2>
-                    <p className="text-left mb-2 text-teal-950 dark:text-purple-400" dangerouslySetInnerHTML={{ __html: tr }}></p>
+                    <h2 className={`font-semibold  font-${arFont} text-right mb-7 leading-[2em] md:leading-[2em] text-teal-900 dark:text-inherit text-3xl md:text-4xl`}>{ar}</h2>
+                    {isTr ? <p className="text-left mb-2 text-teal-950 dark:text-cyan-400" dangerouslySetInnerHTML={{ __html: tr }}></p> : ""}
                     <h3 className="text-left text-slate-800 dark:text-inherit">
                          <b>Artinya: </b>
                          {idn}
@@ -72,7 +76,7 @@ export const Basmalah = () => {
      return (
           <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex  text-center">
                <div className="w-full ">
-                    <h2 className="font-semibold text-2xl md:text-3xl font-uthmani  mb-7 leading-[2em] md:leading-[2em]">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
+                    <h2 className={`font-semibold text-2xl md:text-3xl font-${arFont}  mb-7 leading-[2em] md:leading-[2em]`}>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
 
                     <h3>
                          <i>Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.</i>
