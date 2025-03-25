@@ -79,7 +79,7 @@ export const Surah = () => {
                                         <span className="hidden md:block text-left">{selanjutnya.namaLatin}</span>
                                    </a>
                               ) : (
-                                   " "
+                                   <span className="w-10"></span>
                               )}
                               {sebelumnya ? (
                                    <a href={"/quran/" + sebelumnya.nomor} className="flex items-end flex-col ">
