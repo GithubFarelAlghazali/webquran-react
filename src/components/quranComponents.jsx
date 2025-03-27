@@ -19,7 +19,7 @@ export const ListSurah = (props) => {
                               <span className="capitalize">{tempatTurun}</span> | {jumlah_ayat} Ayat
                          </span>
                     </h2>
-                    <h3 className={`text-3xl items-center font-uthmani text-teal-800 dark:text-violet-200 transition-all duration-75`}>{nama}</h3>
+                    <h3 className={`text-3xl items-center font-uthmani text-teal-800 dark:text-white transition-all duration-75`}>{nama}</h3>
                </a>
           </li>
      );

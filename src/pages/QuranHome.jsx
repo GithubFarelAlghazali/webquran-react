@@ -47,14 +47,14 @@ export const QuranHome = () => {
                          </div>
                     </header>
 
-                    {getTerakhirDibaca !== null ? (
+                    {localStorage.getItem("terakhirDibaca") ? (
                          <section id="terakhirBaca" className=" shadow-md rounded-lg overflow-hidden p-2 w-full mb-3 bg-teal-900 text-white dark:bg-cyan-700">
                               <Link to={"quran/" + getTerakhirDibaca.href}>{`atau, lanjutkan membaca ${getTerakhirDibaca.surah} ayat ${getTerakhirDibaca.ayat}`}</Link>
                          </section>
                     ) : (
                          ""
                     )}
-                    <ul className="w-full overflow-x-scroll h-[70vh]">
+                    <ul className="w-full overflow-x-scroll max-h-[70vh]">
                          {surahDicari.map((surah, index) => {
                               let indexArr = index + 1;
                               return (
