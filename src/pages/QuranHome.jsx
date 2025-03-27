@@ -35,9 +35,9 @@ export const QuranHome = () => {
      return (
           <div className="w-full font-lato">
                <div className="w-full md:w-[50vw] mx-auto mb-52">
-                    <div className="rounded-full text-white bg-teal-800 dark:text-teal-800 dark:bg-white size-10 flex justify-center items-center fixed bottom-12 md:top-7 right-3">
+                    <button className="rounded-full text-white bg-teal-800 dark:text-teal-800 dark:bg-white size-10 flex justify-center items-center fixed bottom-12 md:top-7 right-3 z-20">
                          <DarkToggle></DarkToggle>
-                    </div>
+                    </button>
                     <main className="rounded-lg mb-4 overflow-hidden">
                          <img src={lightImg} alt="ngajiquran hero-image" />
                     </main>

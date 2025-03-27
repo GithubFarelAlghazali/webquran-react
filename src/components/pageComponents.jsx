@@ -33,7 +33,7 @@ export const DarkToggle = () => {
 
 export const Settings = () => {
      const [isOpen, setOpen] = useState(false);
-     const { changeFont, setTr, isTr } = useTheme();
+     const { changeFont, setTr, isTr, setId, isId, fontSz, changeSize } = useTheme();
      const selectedFont = localStorage.getItem("font");
 
      const visibleSetting = () => {
@@ -79,6 +79,32 @@ export const Settings = () => {
                               }}
                          />
                          <label htmlFor="tr">Transliterasi</label>
+                    </li>
+                    <li className="flex items-center">
+                         <input
+                              type="checkbox"
+                              id="id"
+                              checked={isId}
+                              className="size-4 mx-2 accent-teal-700 focus:border-none"
+                              onChange={(e) => {
+                                   setId(e.target.checked);
+                              }}
+                         />
+                         <label htmlFor="id">Terjemahan</label>
+                    </li>
+                    <li className="flex flex-col">
+                         <input
+                              type="range"
+                              id="size"
+                              min={26}
+                              max={50}
+                              value={fontSz}
+                              className="size-4 mx-2 accent-teal-700 focus:border-none w-44"
+                              onChange={(e) => {
+                                   changeSize(e.target.value);
+                              }}
+                         />
+                         <label htmlFor="size">Ukuran huruf Arab : {fontSz}px</label>
                     </li>
                </ul>
           </>

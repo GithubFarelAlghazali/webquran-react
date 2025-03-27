@@ -56,9 +56,9 @@ export const Surah = () => {
           <div className="w-full font-lato ">
                <div className="w-full mx-auto relative md:w-[50vw] mb-44">
                     <Settings></Settings>
-                    <div className="rounded-full text-white bg-slate-700 dark:text-slate-700 dark:bg-white size-10 flex justify-center items-center fixed bottom-12 md:bottom-24 right-3 z-30">
+                    <button className="rounded-full text-white bg-slate-700 dark:text-slate-700 dark:bg-white size-10 flex justify-center items-center fixed bottom-12 md:bottom-24 right-3 z-30">
                          <DarkToggle></DarkToggle>
-                    </div>
+                    </button>
                     <header className=" shadow-md bg-gradient-to-r from-sky-500 to-green-400  text-white border dark:border-none p-2 px-3 rounded-lg sticky top-2 w-full">
                          <div className="flex justify-between  absolute top-2 left-3 right-3">
                               <a id="navigation" href="/" className="  ">

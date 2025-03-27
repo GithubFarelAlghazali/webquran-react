@@ -31,7 +31,50 @@ export const ThemeProvider = ({ children }) => {
           setIsTr(condition);
      };
 
-     return <ThemeContext.Provider value={{ arFont, changeFont, isTr, setTr }}>{children}</ThemeContext.Provider>;
+     // set translate appereance
+     const [isId, setIsId] = useState(() => {
+          const storedId = localStorage.getItem("id");
+          return storedId !== null ? JSON.parse(storedId) : true;
+     });
+
+     useEffect(() => {
+          localStorage.setItem("id", JSON.stringify(isTr));
+     }, [isTr]);
+
+     const setId = (condition) => {
+          setIsId(condition);
+     };
+
+     // set font size
+     const [fontSz, setFontSize] = useState(() => {
+          const storedFontSize = localStorage.getItem("fontSize");
+          return storedFontSize !== null ? storedFontSize : 30;
+     });
+
+     useEffect(() => {
+          localStorage.setItem("fontSize", fontSz);
+     }, [fontSz]);
+
+     const changeSize = (condition) => {
+          setFontSize(condition);
+     };
+
+     return (
+          <ThemeContext.Provider
+               value={{
+                    arFont,
+                    changeFont,
+                    isTr,
+                    setTr,
+                    isId,
+                    setId,
+                    fontSz,
+                    changeSize,
+               }}
+          >
+               {children}
+          </ThemeContext.Provider>
+     );
 };
 
 export const useTheme = () => useContext(ThemeContext);

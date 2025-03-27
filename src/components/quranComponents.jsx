@@ -3,8 +3,6 @@ import { Bookmark, CopyIcon } from "../assets/icons";
 import { setTerakhirDibaca } from "../services/quran.service";
 import { useTheme } from "../hooks/useTheme";
 
-const arFont = localStorage.getItem("font");
-
 export const ListSurah = (props) => {
      const { nomor, children, nama, namaLatin, jumlah_ayat, tempatTurun, garis, arFont } = props;
      return (
@@ -14,7 +12,7 @@ export const ListSurah = (props) => {
                </div>
                <a href={"/quran/" + children} className="flex justify-between w-[90%] ">
                     <h2 className="text-xl font-semibold text-left">
-                         {namaLatin}{" "}
+                         {namaLatin}
                          <span className="block text-base font-medium">
                               <span className="capitalize">{tempatTurun}</span> | {jumlah_ayat} Ayat
                          </span>
@@ -28,7 +26,7 @@ export const ListSurah = (props) => {
 export const ListAyat = (props) => {
      const { id, nomor, ar, idn, nama, nomorSurah, garis, tr } = props;
      const [notifStatus, setNotifStatus] = useState({ status: false, mes: "" });
-     const { isTr, arFont } = useTheme();
+     const { isTr, arFont, isId, fontSz } = useTheme();
 
      const notif = (mes) => {
           setNotifStatus({ status: true, mes });
@@ -53,30 +51,37 @@ export const ListAyat = (props) => {
           <li className={(garis ? "border-b border-b-slate-700" : "") + " justify-between py-7 px-2  gap-2 flex scroll-m-40"} id={id}>
                <div className="w-[10%] text-center items-center flex flex-col justify-start gap-3">
                     <h3>{nomor}</h3>
-                    <button onClick={handleBookmark}>
-                         <Bookmark style="fill-current text-teal-800 dark:text-cyan-500"></Bookmark>
+                    <button onClick={handleBookmark} className="transition duration-100 hover:bg-teal-800 p-2 rounded-full text-teal-800 dark:text-cyan-500 hover:text-white dark:hover:bg-white dark:hover:text-slate-950">
+                         <Bookmark style="fill-current "></Bookmark>
                     </button>
-                    <button onClick={copyAyat} popoverTarget="popupAyat">
-                         <CopyIcon style="fill-current text-teal-800 dark:text-cyan-500"></CopyIcon>
+                    <button onClick={copyAyat} className=" text-teal-800 dark:text-cyan-500 transition duration-100 hover:bg-teal-800 hover:text-white p-2 rounded-full dark:hover:bg-white dark:hover:text-slate-950">
+                         <CopyIcon style="fill-current"></CopyIcon>
                     </button>
                </div>
                <div className="w-full ">
-                    <h2 className={`font-semibold  font-${arFont} text-right mb-7 leading-[2em] md:leading-[2em] text-teal-900 dark:text-inherit text-3xl md:text-4xl`}>{ar}</h2>
+                    <h2 className={`font-semibold  font-${arFont} text-right mb-7 leading-[2em] md:leading-[2em] text-teal-900 dark:text-inherit`} style={{ fontSize: `${fontSz}px` }}>
+                         {ar}
+                    </h2>
                     {isTr ? <p className="text-left mb-2 text-teal-950 dark:text-cyan-400" dangerouslySetInnerHTML={{ __html: tr }}></p> : ""}
-                    <h3 className="text-left text-slate-800 dark:text-inherit">
-                         <b>Artinya: </b>
-                         {idn}
-                    </h3>
+                    {isId ? (
+                         <h3 className="text-left text-slate-800 dark:text-inherit">
+                              <b>Artinya: </b>
+                              {idn}
+                         </h3>
+                    ) : (
+                         ""
+                    )}
                </div>
                {notifStatus.status ? <div className=" fixed bottom-[10vh] left-10 right-10 md:left-[40vw] md:right-[40vw] bg-white border border-slate-600 p-2 rounded-md text-black">{notifStatus.mes}</div> : ""}
           </li>
      );
 };
 export const Basmalah = () => {
+     const { arFont } = useTheme();
      return (
           <li className="border-b border-b-slate-700 justify-between py-7 px-2  gap-2 flex  text-center">
                <div className="w-full ">
-                    <h2 className={`font-semibold text-2xl md:text-3xl font-${arFont}  mb-7 leading-[2em] md:leading-[2em]`}>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
+                    <h2 className={`font-semibold text-2xl md:text-3xl font-${arFont}  mb-7 leading-[2em] md:leading-[2em] text-teal-900 dark:text-inherit`}>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
 
                     <h3>
                          <i>Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.</i>
