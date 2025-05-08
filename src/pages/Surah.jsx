@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { ListAyat, Basmalah } from "../components/quranComponents";
 import { ArrowBack, ArrowForward, HomeIcon, FindAyatIcon } from "../assets/icons";
-import { DarkToggle, Settings } from "../components/pageComponents";
+import { DarkToggle, Settings, Skeleton } from "../components/pageComponents";
 import { Footer } from "./Footer";
 
 export const Surah = () => {
@@ -13,6 +13,7 @@ export const Surah = () => {
      const [idAyatTujuan, setIdAyatTujuan] = useState();
      const [bismilah, setBismilah] = useState(true);
      const location = useLocation();
+     const [loading, setLoading] = useState(true);
      useEffect(() => {
           getSurahAyat(id, (data) => {
                setSurah(data);
@@ -20,6 +21,7 @@ export const Surah = () => {
                if (data.nomor == 1 || data.nomor == 9) {
                     setBismilah(false);
                }
+               setLoading(false);
           });
      }, [id]);
 
@@ -103,22 +105,24 @@ export const Surah = () => {
                     </header>
                     <ul className=" w-full md:w-[50vw] mx-auto dark:text-white">
                          {bismilah ? <Basmalah></Basmalah> : ""}
-                         {ayat.map((ayatt, index) => {
-                              let indexArr = index + 1;
-                              return (
-                                   <ListAyat
-                                        key={ayatt.nomorAyat}
-                                        id={ayatt.nomorAyat}
-                                        nama={surah.namaLatin}
-                                        nomorSurah={surah.nomor}
-                                        nomor={ayatt.nomorAyat}
-                                        ar={ayatt.teksArab}
-                                        idn={ayatt.teksIndonesia}
-                                        tr={ayatt.teksLatin}
-                                        garis={ayat.length !== indexArr}
-                                   ></ListAyat>
-                              );
-                         })}
+                         {loading
+                              ? Array.from({ length: 10 }).map((_, i) => <Skeleton key={i} />)
+                              : ayat.map((ayatt, index) => {
+                                     let indexArr = index + 1;
+                                     return (
+                                          <ListAyat
+                                               key={ayatt.nomorAyat}
+                                               id={ayatt.nomorAyat}
+                                               nama={surah.namaLatin}
+                                               nomorSurah={surah.nomor}
+                                               nomor={ayatt.nomorAyat}
+                                               ar={ayatt.teksArab}
+                                               idn={ayatt.teksIndonesia}
+                                               tr={ayatt.teksLatin}
+                                               garis={ayat.length !== indexArr}
+                                          ></ListAyat>
+                                     );
+                                })}
                     </ul>
                </div>
                <Footer></Footer>

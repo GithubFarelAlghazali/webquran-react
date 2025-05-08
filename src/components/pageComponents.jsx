@@ -110,3 +110,11 @@ export const Settings = () => {
           </>
      );
 };
+
+export const Skeleton = () => {
+     return (
+          <>
+               <li className={"justify-between p-2 my-2 flex bg-slate-500 h-20 opacity-5 rounded-md animate-pulse"}></li>
+          </>
+     );
+};

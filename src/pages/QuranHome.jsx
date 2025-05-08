@@ -4,20 +4,21 @@ import { ListSurah } from "../components/quranComponents";
 import { Link } from "react-router-dom";
 import { getTerakhirDibaca } from "../services/quran.service";
 import lightImg from "../assets/banner-light.png";
-import { DarkToggle } from "../components/pageComponents";
+import { DarkToggle, Skeleton } from "../components/pageComponents";
 import { Footer } from "./Footer";
 
 export const QuranHome = () => {
      const [surahs, setSurah] = useState([]);
      const [surahDicari, setSurahDicari] = useState([]);
+     const [loading, setLoading] = useState(true);
 
      useEffect(() => {
           getSurahList((data) => {
                setSurah(data);
                setSurahDicari(data);
+               setLoading(false);
           });
      }, []);
-
      const cariSurah = (event) => {
           const input = event.target.value.toLowerCase(); // Ubah input ke lowercase
           if (input !== "") {
@@ -55,14 +56,16 @@ export const QuranHome = () => {
                          ""
                     )}
                     <ul className="w-full overflow-x-scroll max-h-[70vh]">
-                         {surahDicari.map((surah, index) => {
-                              let indexArr = index + 1;
-                              return (
-                                   <ListSurah key={surah.nomor} nomor={surah.nomor} nama={surah.nama} namaLatin={surah.namaLatin} jumlah_ayat={surah.jumlahAyat} tempatTurun={surah.tempatTurun} garis={surahDicari.length !== indexArr}>
-                                        {surah.nomor}
-                                   </ListSurah>
-                              );
-                         })}
+                         {loading
+                              ? Array.from({ length: 10 }).map((_, i) => <Skeleton key={i} />)
+                              : surahDicari.map((surah, index) => {
+                                     let indexArr = index + 1;
+                                     return (
+                                          <ListSurah key={surah.nomor} nomor={surah.nomor} nama={surah.nama} namaLatin={surah.namaLatin} jumlah_ayat={surah.jumlahAyat} tempatTurun={surah.tempatTurun} garis={surahDicari.length !== indexArr}>
+                                               {surah.nomor}
+                                          </ListSurah>
+                                     );
+                                })}
                     </ul>
                </div>
                <Footer></Footer>
