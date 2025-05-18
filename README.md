@@ -4,7 +4,6 @@
 
 [https://ngajiquran.vercel.app](https://ngajiquran.vercel.app)
 
----
 
 ## 🏃‍♂️ How to run
 
@@ -36,7 +35,6 @@ pnpm dev
 bun dev
 ```
 
----
 
 ## 🎯 Features
 
@@ -59,7 +57,6 @@ bun dev
 -    #### Theme customization
      There are 2 fonts that you can use that are in accordance with the standard reading of the Quran, Uthmani & Indopak (for the Asian region). You can change the font according to your preference & comfort. You can also adjust the size of the Arabic font, hide or show the translated text & transliteration, and change the theme to dark or light
 
----
 
 ## 💻 Build with
 
